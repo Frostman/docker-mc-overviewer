@@ -7,8 +7,8 @@ ARG MINECRAFT_URL=https://s3.amazonaws.com/Minecraft.Download/versions
 ARG MINECRAFT_VERSION=1.11.2
 
 ENV MINECRAFT_DOWNLOAD_URL=${MINECRAFT_URL}/${MINECRAFT_VERSION}/${MINECRAFT_VERSION}.jar
-ENV BUILD_DEPS="build-essential python-dev git ca-certificates"
-ENV RUNTIME_DEPS="python python-imaging python-numpy wget"
+ENV BUILD_DEPS="build-essential python-dev git"
+ENV RUNTIME_DEPS="python python-imaging python-numpy wget ca-certificates"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ${BUILD_DEPS} ${RUNTIME_DEPS} \
