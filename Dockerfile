@@ -3,6 +3,10 @@ FROM ubuntu:xenial
 ARG GIT_URL=https://github.com/overviewer/Minecraft-Overviewer
 ARG GIT_REF=master
 
+ARG MINECRAFT_URL=https://s3.amazonaws.com/Minecraft.Download/versions
+ARG MINECRAFT_VERSION=1.11.2
+
+ENV MINECRAFT_DOWNLOAD_URL={MINECRAFT_URL}/${MINECRAFT_VERSION}/${MINECRAFT_VERSION}.jar
 ENV BUILD_DEPS="build-essential python-dev git ca-certificates"
 ENV RUNTIME_DEPS="python python-imaging python-numpy"
 
@@ -27,5 +31,7 @@ RUN apt-get update \
 
 RUN useradd --no-create-home --shell /bin/false --system --uid 1000 overviewer
 USER overviewer
+
+RUN wget -P ~/.minecraft/versions/${MINECRAFT_VERSION}/ ${MINECRAFT_DOWNLOAD_URL}
 
 ENTRYPOINT ["overviewer.py"]
