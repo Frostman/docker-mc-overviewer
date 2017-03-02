@@ -29,7 +29,7 @@ RUN apt-get update \
     && rm -rf /usr/share/mime \
     && rm -rf /usr/share/GeoIP
 
-RUN useradd --no-create-home --shell /bin/false --system --uid 1000 overviewer
+RUN useradd --create-home --shell /bin/false --system --uid 1000 overviewer
 USER overviewer
 
 RUN wget -P ~/.minecraft/versions/${MINECRAFT_VERSION}/ ${MINECRAFT_DOWNLOAD_URL}
