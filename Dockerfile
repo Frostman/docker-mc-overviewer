@@ -18,6 +18,7 @@ RUN apt-get update \
     && git remote add origin ${GIT_URL} \
     && git fetch origin ${GIT_REF} \
     && git reset --hard FETCH_HEAD \
+    && sed -i 's/\https:\/\/google-maps-icons\.googlecode\.com\/files\///g' overviewer_core/assetmanager.py
     && python setup.py install \
     && apt-get purge -y ${BUILD_DEPS} \
     && apt-get autoremove -y --purge \
